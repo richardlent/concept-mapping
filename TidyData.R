@@ -27,7 +27,7 @@ theData <- as.matrix(theData)
 pheatmap(theData, legend = FALSE,
          display_numbers = TRUE, number_format = "%i", fontsize_number = 25,
          cellheight = 75, cellwidth = 150,
-         main = "Your Title Here\n") # Make a custom title based on the variable selected by user.
+         main = paste0("Heatmap of ", x, " by Course and Topic\n"))
 
 
 
