@@ -3,20 +3,28 @@
 
 library(pheatmap) # Pretty heatmaps.
 library(tidyr)
-library(RColorBrewer)
+library(googledrive)
+library(googlesheets4)
+library(dplyr)
 
-data2 <- read.csv("TidyData.csv", header = TRUE)
-data2 <- spread(data2, Course, Week)
-rownames(data2) <- data2$Topic
-data2$Topic <- NULL
-data2 <- as.matrix(data2)
+# Get the shared Google Sheet and read it into an R data frame.
+sheets_auth(email = "rlent@holycross.edu") # Probably should encrypt this.
+stem <- drive_get("STEM Topics Data", team_drive = "Integrated Science/Neuroscience") # A dribble.
+stemData <- read_sheet(stem$id) # A tibble.
+stemData <- as.data.frame(stemData) # Convert back to data frame so we can have row names.
 
-# Have to adjust margins by changing cellheight and cellwidth.
-pheatmap(data2, legend = FALSE,
+# Make the data matrix needed by pheatmap.
+theData <- select(stemData, 'Topic Name', Course, Week)
+theData <- spread(theData, Course, Week)
+rownames(theData) <- theData$'Topic Name'
+theData$'Topic Name' <- NULL
+theData <- as.matrix(theData)
+
+# Can adjust margins of the heatmap by changing cellheight and cellwidth.
+pheatmap(theData, legend = FALSE,
          display_numbers = TRUE, number_format = "%i", fontsize_number = 25,
          cellheight = 75, cellwidth = 150,
-         main = "Heatmap table of when topics occur across courses\n",
-         color = c("red", "yellow", "green", "blue"))
+         main = "Your Title Here\n") # Make a custom title based on the variable selected by user.
 
 
 
