@@ -1,11 +1,14 @@
 # TidyData.R
 # Heatmap using tidy data.
+# Richard A. Lent, June 12, 2019.
 
 library(pheatmap) # Pretty heatmaps.
 library(tidyr)
 library(googledrive)
 library(googlesheets4)
 library(dplyr)
+
+x <- "Week" # The quantitative variable for the heatmap.
 
 # Get the shared Google Sheet and read it into an R data frame.
 sheets_auth(email = "rlent@holycross.edu") # Probably should encrypt this.
@@ -14,8 +17,8 @@ stemData <- read_sheet(stem$id) # A tibble.
 stemData <- as.data.frame(stemData) # Convert back to data frame so we can have row names.
 
 # Make the data matrix needed by pheatmap.
-theData <- select(stemData, 'Topic Name', Course, Week)
-theData <- spread(theData, Course, Week)
+theData <- select(stemData, 'Topic Name', Course, x)
+theData <- spread(theData, Course, x)
 rownames(theData) <- theData$'Topic Name'
 theData$'Topic Name' <- NULL
 theData <- as.matrix(theData)

@@ -1,6 +1,7 @@
 # heatmap.R
 # Heatmap of when topics occur across courses.
-# Uses CSV file data1.csv
+# Uses CSV file data1.csv.
+# Richard A. Lent, June 2019.
 
 library(pheatmap) # Pretty heatmaps.
 
