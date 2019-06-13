@@ -13,7 +13,7 @@ x <- "Week" # The quantitative variable for the heatmap.
 # Get the shared Google Sheet and read it into an R data frame.
 sheets_auth(email = "rlent@holycross.edu") # Probably should encrypt this.
 stem <- drive_get("STEM Topics Data", team_drive = "Integrated Science/Neuroscience") # A dribble.
-stemData <- read_sheet(stem$id) # A tibble.
+stemData <- read_sheet(stem$id)     # A tibble.
 stemData <- as.data.frame(stemData) # Convert back to data frame so we can have row names.
 
 # Make the data matrix needed by pheatmap.

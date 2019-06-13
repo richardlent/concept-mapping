@@ -13,7 +13,7 @@ rownames(data1) <- c("scientific method", "neurons", "memory", "development", "e
 pheatmap(data1, legend_breaks = c(1, 2, 3), legend_labels = c("early", "middle", "late"),
          display_numbers = TRUE, number_format = "%i", fontsize_number = 25,
          cellheight = 75, cellwidth = 150,
-         main = "Heatmap table of when topics occur across courses\n")
+         main = "Clustered heatmap table of when topics occur across courses\n")
 
 
 
