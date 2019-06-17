@@ -1,0 +1,12 @@
+name: STEMviz
+title: STEMviz
+username:
+account: hcdataviz
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 980291
+bundleId: 2159034
+url: https://hcdataviz.shinyapps.io/STEMviz/
+when: 1560784394.38912
+asMultiple: FALSE
+asStatic: FALSE
