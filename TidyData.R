@@ -6,7 +6,6 @@ library(pheatmap) # Pretty heatmaps.
 library(tidyr)
 library(googledrive)
 library(googlesheets)
-library(googlesheets4)
 library(dplyr)
 
 # This variable eventually will be picked off an input list
