@@ -4,8 +4,7 @@
 library(shiny)
 library(googledrive)
 library(googlesheets)
-
-gs_auth(token = "shiny_app_token.rds")
+library(dplyr)
 
 ui <- fluidPage(
     
