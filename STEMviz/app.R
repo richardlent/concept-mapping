@@ -16,7 +16,7 @@ ui <- fluidPage(
 server <- function(input, output) {
     
     stemData <-
-        drive_get("STEM Topics Data", team_drive = "Integrated Science/Neuroscience") %>%
+        drive_get("Test Please Ignore", team_drive = "Integrated Science/Neuroscience") %>%
         select(id) %>%
         combine() %>%
         gs_key(lookup = FALSE,
