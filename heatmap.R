@@ -3,6 +3,8 @@
 # Uses CSV file data1.csv.
 # Richard A. Lent, June 2019.
 
+# Editing this on CodeHub app. Then what? Then you push it.
+
 library(pheatmap) # Pretty heatmaps.
 
 data1 <- as.matrix(read.csv("data1.csv", header = TRUE))
