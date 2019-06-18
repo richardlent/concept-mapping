@@ -16,7 +16,7 @@ x <- "Week" # The quantitative variable for the heatmap.
 ui <- fluidPage(
     
     titlePanel("STEMviz"),
-    dataTableOutput("theSheet"),
+    DT::dataTableOutput("theSheet"),
     plotOutput("theHeatmap")
 
 ) # ui
@@ -39,7 +39,7 @@ server <- function(input, output) {
     theData$'Topic Name' <- NULL
     theData <- as.matrix(theData)
     
-    output$theSheet <- renderDataTable({
+    output$theSheet <- DT::renderDataTable({
         datatable(theData)
     })
     
