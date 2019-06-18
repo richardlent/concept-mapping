@@ -11,7 +11,7 @@ library(DT)
 
 # This variable eventually will be picked off an input list
 # in the Shiny app.
-x <- "Week" # The quantitative variable for the heatmap.
+x <- "Introduced/Reinforced" # The quantitative variable for the heatmap.
 
 ui <- fluidPage(
     
