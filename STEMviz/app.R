@@ -8,6 +8,9 @@ library(dplyr)
 library(pheatmap)
 library(tidyr)
 library(DT)
+library(readr)
+
+helpTxt <- read_lines("help.txt")
 
 stemData <-
     drive_get("Test Please Ignore", team_drive = "Integrated Science/Neuroscience") %>%
@@ -29,7 +32,7 @@ ui <- fluidPage(
     ),
     DT::dataTableOutput("theSheet"),
     plotOutput("theHeatmap")
-
+    
 ) # ui
 
 server <- function(input, output) {
@@ -54,13 +57,13 @@ server <- function(input, output) {
     })
     
     observeEvent(input$maphelp, {
-        helpContent <- HTML("About this thing.")
+        helpContent <- HTML(helpTxt)
         
         showModal(modalDialog(
             title = HTML("<center><h3>Dashboard Help</h3></center>"), helpContent
         ))
     }) # observeEvent(input$maphelp
-
+    
 } # server
 
 # Run the application 
