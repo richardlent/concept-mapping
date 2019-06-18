@@ -7,6 +7,7 @@ library(googlesheets)
 library(dplyr)
 library(pheatmap)
 library(tidyr)
+library(DT)
 
 # This variable eventually will be picked off an input list
 # in the Shiny app.
@@ -39,7 +40,7 @@ server <- function(input, output) {
     theData <- as.matrix(theData)
     
     output$theSheet <- renderDataTable({
-        theData
+        datatable(theData)
     })
     
     output$theHeatmap <- renderPlot({
