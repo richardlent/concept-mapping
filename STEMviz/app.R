@@ -19,6 +19,8 @@ stemData <-
 
 ui <- fluidPage(
     titlePanel("STEMviz"),
+    actionButton("maphelp", "Help", style="color: black; background-color: cyan; border-color: black;
+                     margin-top: 0.5em;"),
     p(),
     selectInput(
         "theVariable",
@@ -50,6 +52,14 @@ server <- function(input, output) {
                  fontsize_row = 16, fontsize_col = 16, fontsize = 18,
                  main = paste0("Heatmap of ", input$theVariable, " by Course and Topic\n"))
     })
+    
+    observeEvent(input$maphelp, {
+        helpContent <- HTML("About this thing.")
+        
+        showModal(modalDialog(
+            title = HTML("<center><h3>Dashboard Help</h3></center>"), helpContent
+        ))
+    }) # observeEvent(input$maphelp
 
 } # server
 
