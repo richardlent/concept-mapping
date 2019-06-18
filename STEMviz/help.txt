@@ -14,7 +14,7 @@ To produce the heatmap, the app creates a data matrix using courses as columns a
 
 In addition to displaying and color-coding the data, the heatmap performs a <a href="https://en.wikipedia.org/wiki/Hierarchical_clustering" target='blank'>hierarchical cluster analysis</a> of both the rows (topics) and columns (courses) of the matrix, and rearranges the cells to reflect simultaneous groupings of courses and topics according to values of the quantitative variable. Cluster analysis is one of the main data visualization techniques used in <a href="https://www.sciencedirect.com/science/article/pii/S0149718916301471" target='blank'>concept mapping</a>, along with <a href="http://www.statsoft.com/Textbook/Multidimensional-Scaling" target='blank'>multidimensional scaling</a>.<br><br>
 
-Source code for this app can be viewed <a href="https://github.com/richardlent/concept-mapping">here</a>.
+Source code for this app can be viewed <a href="https://github.com/richardlent/concept-mapping" target='blank'>here</a>.
 
 </div><br>
 
