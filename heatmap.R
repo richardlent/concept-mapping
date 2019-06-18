@@ -5,6 +5,8 @@
 
 library(pheatmap) # Pretty heatmaps.
 
+# Test.
+
 data1 <- as.matrix(read.csv("data1.csv", header = TRUE))
 rownames(data1) <- c("scientific method", "neurons", "memory", "development", "experiment", 
                      "pH", "metabolism", "enzymes", "heredity", "dna")
