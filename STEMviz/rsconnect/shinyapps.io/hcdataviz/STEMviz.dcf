@@ -5,8 +5,8 @@ account: hcdataviz
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 980291
-bundleId: 2161885
+bundleId: 2162074
 url: https://hcdataviz.shinyapps.io/STEMviz/
-when: 1560877704.90798
+when: 1560883268.00392
 asMultiple: FALSE
 asStatic: FALSE

@@ -1,6 +1,15 @@
  <!-- Help text for Shiny app STEMviz. -->
 
-This is a <a href='https://shiny.rstudio.com/' target='blank'>Shiny</a> web app written in the <a href='https://www.r-project.org/' target='blank'>R programming language</a>.
+<div style="font-size:17px;">
+
+This is a <a href='https://shiny.rstudio.com/' target='blank'>Shiny</a> web app written in the <a href='https://www.r-project.org/' target='blank'>R programming language</a>.<br><br>
+
+Details to follow.<br><br>
+
+</div>
+
+<center><p style="font-size:11px;">STEMviz Version 0.1 by <u><a href='https://richardlent.github.io' target=_blank style='color:#0000EE;'>Richard A. Lent.</a></u></p></center>
+
 
 
             

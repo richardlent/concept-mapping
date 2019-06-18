@@ -58,9 +58,8 @@ server <- function(input, output) {
     
     observeEvent(input$maphelp, {
         helpContent <- HTML(helpTxt)
-        
         showModal(modalDialog(
-            title = HTML("<center><h3>Dashboard Help</h3></center>"), helpContent
+            title = HTML("<center><h3>STEMviz Help</h3></center>"), helpContent
         ))
     }) # observeEvent(input$maphelp
     
