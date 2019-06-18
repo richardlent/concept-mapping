@@ -37,7 +37,7 @@ ui <- fluidPage(
 
 server <- function(input, output) {
     
-    output$theHeatmap <- renderPlot(height = 700, { # To make room for title. May have to tweak later.
+    output$theHeatmap <- renderPlot({ # To make room for title. May have to tweak later.
         # Make the data matrix needed by pheatmap.
         stemData <- as.data.frame(stemData) # Convert back to data frame so we can have row names.
         theData <- select(stemData, 'Topic Name', Course, input$theVariable)
@@ -46,13 +46,14 @@ server <- function(input, output) {
         theData$'Topic Name' <- NULL
         theData <- as.matrix(theData)
         output$theSheet <- DT::renderDataTable({
-            datatable(theData)
+            # datatable(theData)
+            datatable(stemData)
         })
         # Can adjust margins of the heatmap by changing cellheight and cellwidth.
         pheatmap(theData, legend = FALSE,
                  display_numbers = TRUE, number_format = "%i", fontsize_number = 25,
                  cellheight = 75, cellwidth = 150,
-                 fontsize_row = 16, fontsize_col = 16, fontsize = 18,
+                 fontsize_row = 16, fontsize_col = 16, fontsize = 12,
                  main = paste0("Heatmap of ", input$theVariable, " by Course and Topic\n"))
     })
     

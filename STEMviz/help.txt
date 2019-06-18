@@ -2,11 +2,19 @@
 
 <div style="font-size:17px;">
 
-This is a <a href='https://shiny.rstudio.com/' target='blank'>Shiny</a> web app written in the <a href='https://www.r-project.org/' target='blank'>R programming language</a>.<br><br>
+This is STEMviz, a <a href='https://shiny.rstudio.com/' target='blank'>Shiny</a> web app written in the <a href='https://www.r-project.org/' target='blank'>R programming language</a>. It was designed to help visualize various aspects of topics taught in STEM courses.<br><br>
 
-Details to follow.<br><br>
+The app produces <a href="https://en.wikipedia.org/wiki/Heat_map" target='blank'>heatmaps</a> with data contained in a shared Google Sheet, using the R package <a href="https://www.rdocumentation.org/packages/pheatmap/versions/0.2/topics/pheatmap" target='blank'>pheatmap</a> (the p is for "pretty" heatmaps).<br><br>
 
-</div>
+The app first displays the Google Sheet that supplies the data, using the R package <a href="https://rstudio.github.io/DT/" target='blank'>DT</a>, which is an R interface to the JavaScript <a href="https://datatables.net/" target='blank'>DataTables</a> library. You can interact with the data by using the tools provided by the DT package, including searching, pagination, sorting, and other table functions.<br><br>
+
+The app then draws a heatmap using the quantitative variable selected by the user. You can change the mapped variable using the drop-down list. When you choose a new variable the heatmap will be redrawn to reflect the change.<br><br>
+
+To produce the heatmap, the app creates a data matrix using courses as columns and topics as rows. Values of the matrix cells are supplied by the selected variable. Cells are color-coded according to their values, which are also displayed in the cells. <br><br>
+
+In addition to displaying and color-coding the data, the heatmap performs a <a href="https://en.wikipedia.org/wiki/Hierarchical_clustering" target='blank'>hierarchical cluster analysis</a> of both the rows (topics) and columns (courses) of the matrix, and rearranges the cells to reflect simultaneous groupings of courses and topics according to values of the quantitative variable. Cluster analysis is one of the main data visualization techniques used in <a href="https://www.sciencedirect.com/science/article/pii/S0149718916301471" target='blank'>concept mapping</a>, along with <a href="http://www.statsoft.com/Textbook/Multidimensional-Scaling" target='blank'>multidimensional scaling</a>.
+
+</div><br>
 
 <center><p style="font-size:11px;">STEMviz Version 0.1 by <u><a href='https://richardlent.github.io' target=_blank style='color:#0000EE;'>Richard A. Lent.</a></u></p></center>
 
