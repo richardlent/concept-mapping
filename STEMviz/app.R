@@ -1,6 +1,12 @@
 # STEMviz, a Shiny app for visualization of STEM topics and concept mapping.
 # Richard Lent, Thursday, June 13, 2019.
 
+# Test of editing in Textastic.
+# So, it werks.
+# So you open it in Textastic, edit, then close it and the changes automagically go back to Working Copy. 
+
+# Thus Textastic can edit the Working Copy file in place.
+
 library(shiny)
 library(googledrive)
 library(googlesheets)
