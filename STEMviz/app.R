@@ -7,6 +7,10 @@
 
 # Thus Textastic can edit the Working Copy file in place.
 
+# Now editing in Textastic after opening the file from Working Copy in the Files app.
+
+# And the changes propagate back to Working Copy.
+
 library(shiny)
 library(googledrive)
 library(googlesheets)
