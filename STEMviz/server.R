@@ -1,15 +1,6 @@
-# STEMviz, a Shiny app for visualization of STEM topics and concept mapping.
-# Richard Lent, Thursday, June 13, 2019.
-
 library(shiny)
 library(googledrive)
 library(googlesheets)
-library(dplyr)
-library(pheatmap)
-library(tidyr)
-library(DT)
-library(readr)
-library(superheat)
 
 helpTxt <- read_lines("help.txt")
 
@@ -23,23 +14,9 @@ stemData <-
     gs_key(lookup = FALSE, visibility = "private") %>%
     gs_read_csv()
 
-ui <- fluidPage(
-    titlePanel("STEMviz"),
-    actionButton("apphelp", "Help", style="color: black; background-color: cyan; border-color: black;
-                     margin-top: 0.5em;"),
-    p(),
-    selectInput(
-        "theVariable",
-        "Select the variable to map",
-        c("Week", "Early/Middle/Late", "Introduced/Reinforced")
-    ),
-    DT::dataTableOutput("theSheet"),
-    plotOutput("theHeatmap")
-    
-) # ui
+# Define server logic required to draw a histogram
+shinyServer(function(input, output) {
 
-server <- function(input, output) {
-    
     output$theHeatmap <- renderPlot({ # To make room for title. May have to tweak later.
         # Make the data matrix needed by pheatmap.
         stemData <- as.data.frame(stemData) # Convert back to data frame so we can have row names.
@@ -68,10 +45,5 @@ server <- function(input, output) {
             title = HTML("<center><h3>STEMviz Help</h3></center>"), helpContent
         ))
     }) # observeEvent(input$apphelp
-    
-} # server
 
-# Run the application 
-shinyApp(ui = ui, server = server)
-
-
+}) # shinyServer
