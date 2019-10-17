@@ -1,10 +1,16 @@
 library(shiny)
 library(googledrive)
 library(googlesheets)
+library(dplyr)
+library(pheatmap)
+library(tidyr)
+library(DT)
+library(readr)
+library(superheat)
 
 helpTxt <- read_lines("help.txt")
 
-drive_auth(email = "rlent@holycross.edu")
+drive_auth(email = "rlent@holycross.edu", token = readRDS('.httr-oauth'))
 
 stemData <-
     # drive_get("Test Please Ignore", team_drive = "Integrated Science/Neuroscience") %>%
@@ -15,7 +21,7 @@ stemData <-
     gs_read_csv()
 
 # Define server logic required to draw a histogram
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
 
     output$theHeatmap <- renderPlot({ # To make room for title. May have to tweak later.
         # Make the data matrix needed by pheatmap.

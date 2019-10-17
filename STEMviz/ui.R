@@ -2,12 +2,6 @@
 # Richard Lent, Thursday, June 13, 2019.
 
 library(shiny)
-library(dplyr)
-library(pheatmap)
-library(tidyr)
-library(DT)
-library(readr)
-library(superheat)
 
 shinyUI(fluidPage(
     titlePanel("STEMviz"),
