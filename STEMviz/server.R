@@ -4,11 +4,11 @@
 library(shiny)
 library(googlesheets)
 library(dplyr)
-library(pheatmap)
 library(tidyr)
 library(DT)
 library(readr)
 library(superheat)
+library(htmltools)
 
 helpTxt <- read_lines("help.txt")
 
@@ -27,20 +27,23 @@ shinyServer(function(input, output, session) {
         stemData <- mutate(stemData, 'TopicCourse' = paste0(stemData$`Topic Name`, '-' , stemData$Course))
         theData <- select(stemData, 'TopicCourse', Course, input$theVariable)
         theData <- spread(theData, Course, input$theVariable)
+        # theData[is.na(theData)] <- 0        # Replace NAs with 0.
         rownames(theData) <- theData$'TopicCourse'
         theData$'TopicCourse' <- NULL
         theData <- as.matrix(theData)
         output$theGoogleSheet <- DT::renderDataTable({
-            # datatable(theData)
             datatable(stemData)
         })
-        # Can adjust margins of the heatmap by changing cellheight and cellwidth.
-        # pheatmap(theData, legend = FALSE,
-        #          display_numbers = TRUE, number_format = "%i", fontsize_number = 25,
-        #          cellheight = 75, cellwidth = 150,
-        #          fontsize_row = 16, fontsize_col = 16, fontsize = 12,
-        #          main = paste0("Heatmap of ", input$theVariable, " by Course and Topic\n"))
-        superheat(theData)
+        superheat(theData, 
+                  # X.text = theData, # Plot data values on top of heatmap cells.
+                  title = paste0("Heatmap of ", input$theVariable, " by Course and Topic\n"),
+                  title.size = 10,
+                  # row.dendrogram = TRUE, col.dendrogram = TRUE,
+                  heat.na.col = "white",
+                  left.label.size = 0.35, # Default size is 0.2.
+                  force.grid.hline = TRUE,
+                  force.grid.vline = TRUE
+                  )
     }, height = 2000)
     
     observeEvent(input$apphelp, {
