@@ -17,12 +17,12 @@ gs_auth(token = "googlesheetsToken.rds")
 
 table <- "Copy of STEMunit1"     # The name of the Google Sheet.
 theSheet <- gs_title(table)      # Register the Google Sheet.
-stemData <- gs_read(theSheet)
+stemData <- gs_read(theSheet)    # Read the Google Sheet into a tibble.
 
 shinyServer(function(input, output, session) {
 
-    output$theHeatmap <- renderPlot({ # To make room for title. May have to tweak later.
-        # Make the data matrix needed by pheatmap.
+    output$theHeatmap <- renderPlot({ 
+        # Make the data matrix needed by pheatmap and/or superheat.
         stemData <- as.data.frame(stemData) # Convert back to data frame so we can have row names.
         stemData <- mutate(stemData, 'TopicCourse' = paste0(stemData$`Topic Name`, '-' , stemData$Course))
         theData <- select(stemData, 'TopicCourse', Course, input$theVariable)
@@ -30,7 +30,7 @@ shinyServer(function(input, output, session) {
         rownames(theData) <- theData$'TopicCourse'
         theData$'TopicCourse' <- NULL
         theData <- as.matrix(theData)
-        output$theSheet <- DT::renderDataTable({
+        output$theGoogleSheet <- DT::renderDataTable({
             # datatable(theData)
             datatable(stemData)
         })

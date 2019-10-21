@@ -13,6 +13,6 @@ shinyUI(fluidPage(
         "Select the variable to map",
         c("Week", "Early/Middle/Late", "Introduced/Reinforced")
     ),
-    DT::dataTableOutput("theSheet"),
+    DT::dataTableOutput("theGoogleSheet"),
     plotOutput("theHeatmap")
 ))
