@@ -1,5 +1,7 @@
+# STEMviz, a Shiny app for visualization of STEM topics and concept mapping.
+# Richard Lent, Thursday, June 13, 2019.
+
 library(shiny)
-library(googledrive)
 library(googlesheets)
 library(dplyr)
 library(pheatmap)
@@ -10,17 +12,13 @@ library(superheat)
 
 helpTxt <- read_lines("help.txt")
 
-drive_auth(email = "rlent@holycross.edu", token = readRDS('.httr-oauth'))
+# This performs authentication using a stored Google Sheets OAuth token obtained with gs_auth().
+gs_auth(token = "googlesheetsToken.rds")
 
-stemData <-
-    # drive_get("Test Please Ignore", team_drive = "Integrated Science/Neuroscience") %>%
-    drive_get("STEMunit1", team_drive = "Integrated Science/Neuroscience") %>%
-    select(id) %>%
-    combine() %>%
-    gs_key(lookup = FALSE, visibility = "private") %>%
-    gs_read_csv()
+table <- "Copy of STEMunit1"     # The name of the Google Sheet.
+theSheet <- gs_title(table)      # Register the Google Sheet.
+stemData <- gs_read(theSheet)
 
-# Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
 
     output$theHeatmap <- renderPlot({ # To make room for title. May have to tweak later.
