@@ -36,8 +36,8 @@ shinyServer(function(input, output, session) {
         })
         superheat(theData, 
                   # X.text = theData, # Plot data values on top of heatmap cells.
-                  title = paste0("Heatmap of ", input$theVariable, " by Course and Topic\n"),
-                  title.size = 10,
+                  title = paste0("Heatmap of\n", input$theVariable, "\nby Course and Topic\n"),
+                  title.size = 10, # Default is 5.
                   # row.dendrogram = TRUE, col.dendrogram = TRUE,
                   heat.na.col = "white",
                   left.label.size = 0.35, # Default size is 0.2.
