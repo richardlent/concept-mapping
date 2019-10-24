@@ -43,7 +43,7 @@ shinyServer(function(input, output, session) {
                   title = paste0("Heatmap of\n", input$theVariable, "\nby Course and Topic\n"),
                   title.size = 10, # Default is 5.
                   # row.dendrogram = TRUE, col.dendrogram = TRUE,
-                  heat.na.col = "white",
+                  heat.na.col = "lightgrey",
                   left.label.size = 0.35, # Default size is 0.2.
                   force.grid.hline = TRUE,
                   force.grid.vline = TRUE
