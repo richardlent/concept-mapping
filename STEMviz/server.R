@@ -80,7 +80,8 @@ shinyServer(function(input, output, session) {
                 z = ~ NMDS3,
                 text = ~ `Topic Name`
                 # hoverinfo = plotThis$Course
-            ) 
+            ) %>% 
+            layout(title="Multidimensional Scaling Plot of Topics")
         
     }) # renderPlotly
     

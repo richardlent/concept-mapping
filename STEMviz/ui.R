@@ -16,9 +16,8 @@ shinyUI(fluidPage(
         c("Week", "Early/Middle/Late", "Introduced/Reinforced", "Class time")
     ),
     DT::dataTableOutput("theGoogleSheet"),
-    p(),
-    plotlyOutput("mds"),
-    p(),
+    br(), br(), br(), br(), br(), br(),
+    plotlyOutput("mds", height = 1000, width = "100%"),
     plotOutput("theHeatmap")
     
 )) # fluidPage
