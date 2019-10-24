@@ -2,6 +2,7 @@
 # Richard Lent, Thursday, June 13, 2019.
 
 library(shiny)
+library(plotly)
 
 shinyUI(fluidPage(
     titlePanel("STEMviz"),
@@ -14,5 +15,8 @@ shinyUI(fluidPage(
         c("Week", "Early/Middle/Late", "Introduced/Reinforced", "Class time")
     ),
     DT::dataTableOutput("theGoogleSheet"),
-    plotOutput("theHeatmap")
+    p(),
+    plotOutput("theHeatmap"),
+    p(),
+    plotlyOutput("mds")
 ))

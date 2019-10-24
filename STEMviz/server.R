@@ -9,30 +9,34 @@ library(DT)
 library(readr)
 library(superheat)
 library(htmltools)
+library(plotly)
+library(vegan)
 
 helpTxt <- read_lines("help.txt")
 
 # This performs authentication using a stored Google Sheets OAuth token obtained with gs_auth().
 gs_auth(token = "googlesheetsToken.rds")
 
-table <- "Copy of STEMunit1"     # The name of the Google Sheet.
-theSheet <- gs_title(table)      # Register the Google Sheet.
-stemData <- gs_read(theSheet)    # Read the Google Sheet into a tibble.
+if(!exists("stemData")) {
+    table <- "Copy of STEMunit1"     # The name of the Google Sheet.
+    theSheet <- gs_title(table)      # Register the Google Sheet.
+    stemData <- gs_read(theSheet)    # Read the Google Sheet into a tibble.
+}
 
 shinyServer(function(input, output, session) {
 
     output$theHeatmap <- renderPlot({ 
         # Make the data matrix needed by pheatmap and/or superheat.
-        stemData <- as.data.frame(stemData) # Convert back to data frame so we can have row names.
-        stemData <- mutate(stemData, 'TopicCourse' = paste0(stemData$`Topic Name`, '-' , stemData$Course))
-        theData <- select(stemData, 'TopicCourse', Course, input$theVariable)
+        stemDataHeatmap <- as.data.frame(stemData) # Convert back to data frame so we can have row names.
+        stemDataHeatmap <- mutate(stemDataHeatmap, 'TopicCourse' = paste0(stemDataHeatmap$`Topic Name`, '-' , stemDataHeatmap$Course))
+        theData <- select(stemDataHeatmap, 'TopicCourse', Course, input$theVariable)
         theData <- spread(theData, Course, input$theVariable)
         # theData[is.na(theData)] <- 0        # Replace NAs with 0.
         rownames(theData) <- theData$'TopicCourse'
         theData$'TopicCourse' <- NULL
         theData <- as.matrix(theData)
         output$theGoogleSheet <- DT::renderDataTable({
-            datatable(stemData)
+            datatable(stemDataHeatmap)
         })
         superheat(theData, 
                   # X.text = theData, # Plot data values on top of heatmap cells.
@@ -44,7 +48,41 @@ shinyServer(function(input, output, session) {
                   force.grid.hline = TRUE,
                   force.grid.vline = TRUE
                   )
-    }, height = 2000)
+    }, height = 2000) # renderPlot
+    
+    output$mds <- renderPlotly({
+        
+        # Subset variables.
+        stemDataSubset <- stemData[c('Topic Name', 'Week', 'Early/Middle/Late', 
+                                     'Introduced/Reinforced', 'Class time', 'Course')]
+        
+        # Make a distance matrix of topics.
+        topics.dist <- dist(cbind(
+            stemDataSubset$Week, 
+            # stemDataSubset$`Early/Middle/Late`, 
+            stemDataSubset$`Introduced/Reinforced`,
+            stemDataSubset$`Class time`), 
+            method="maximum"
+        )
+        
+        # Do MDS.
+        mds <- metaMDS(topics.dist, k = 3)
+        
+        # Merge scores with data so we can label points with topic names.
+        plotThis <- cbind(stemDataSubset, as.data.frame(scores(mds)))
+        
+        # Make a 3D Plotly scatterplot of the MDS axes, with topics as labels.
+        p <- plot_ly(type = 'scatter3d', mode = 'text') %>% 
+            add_trace(
+                data = plotThis,
+                x = ~ NMDS1,
+                y = ~ NMDS2,
+                z = ~ NMDS3,
+                text = ~ `Topic Name`
+                # hoverinfo = plotThis$Course
+            ) 
+        
+    }) # renderPlotly
     
     observeEvent(input$apphelp, {
         helpContent <- HTML(helpTxt)
