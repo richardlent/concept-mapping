@@ -79,15 +79,13 @@ shinyServer(function(input, output, session) {
                 y = ~ NMDS2,
                 z = ~ NMDS3,
                 text = ~ `Topic Name`
-                # hoverinfo = plotThis$Course
-            ) %>% 
-            layout(title="Multidimensional Scaling Plot of Topics")
+            ) %>% layout(font = list(size = 13))
         
     }) # renderPlotly
     
     observeEvent(input$apphelp, {
         helpContent <- HTML(helpTxt)
-        showModal(modalDialog(
+        showModal(modalDialog(size = "l",
             title = HTML("<center><h3>STEMviz Help</h3></center>"), helpContent
         ))
     }) # observeEvent(input$apphelp

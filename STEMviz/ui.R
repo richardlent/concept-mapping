@@ -12,11 +12,15 @@ shinyUI(fluidPage(
     p(),
     selectInput(
         "theVariable",
-        "Select the variable to map",
+        "Select variable for heatmap",
         c("Week", "Early/Middle/Late", "Introduced/Reinforced", "Class time")
     ),
     DT::dataTableOutput("theGoogleSheet"),
     br(), br(), br(), br(), br(), br(),
+    HTML("<center>"),
+    h3("Multidimensional Scaling"),
+    h3("Plot of Topics"),
+    HTML("</center>"),
     plotlyOutput("mds", height = 1000, width = "100%"),
     plotOutput("theHeatmap")
     
