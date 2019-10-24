@@ -46,7 +46,11 @@ shinyServer(function(input, output, session) {
                   heat.na.col = "lightgrey",
                   left.label.size = 0.35, # Default size is 0.2.
                   force.grid.hline = TRUE,
-                  force.grid.vline = TRUE
+                  force.grid.vline = TRUE,
+                  column.title = "Courses",
+                  row.title = "Topics",
+                  column.title.size = 8,
+                  row.title.size = 8
                   )
     }, height = 2000) # renderPlot
     
