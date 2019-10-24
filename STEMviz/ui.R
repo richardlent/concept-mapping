@@ -5,6 +5,7 @@ library(shiny)
 library(plotly)
 
 shinyUI(fluidPage(
+    
     titlePanel("STEMviz"),
     actionButton("apphelp", "Help", style="color: black; background-color: cyan; border-color: black;
                      margin-top: 0.5em;"),
@@ -16,7 +17,8 @@ shinyUI(fluidPage(
     ),
     DT::dataTableOutput("theGoogleSheet"),
     p(),
-    plotOutput("theHeatmap"),
+    plotlyOutput("mds"),
     p(),
-    plotlyOutput("mds")
-))
+    plotOutput("theHeatmap")
+    
+)) # fluidPage
