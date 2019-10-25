@@ -15,6 +15,7 @@ if(!exists("stemData")) {
 shinyServer(function(input, output, session) {
 
     output$theHeatmap <- renderPlot({ 
+        
         # Make the data matrix needed by pheatmap and/or superheat.
         stemDataHeatmap <- as.data.frame(stemData) # Convert back to data frame so we can have row names.
         stemDataHeatmap <- mutate(stemDataHeatmap, 'TopicCourse' = paste0(stemDataHeatmap$`Topic Name`, '-' , stemDataHeatmap$Course))
@@ -24,9 +25,11 @@ shinyServer(function(input, output, session) {
         rownames(theData) <- theData$'TopicCourse'
         theData$'TopicCourse' <- NULL
         theData <- as.matrix(theData)
+        
         output$theGoogleSheet <- DT::renderDataTable({
             datatable(stemDataHeatmap)
         })
+        
         superheat(theData, 
                   # X.text = theData, # Plot data values on top of heatmap cells.
                   title = paste0("Heatmap of\n", input$theVariable, "\nby Course and Topic\n"),
@@ -41,6 +44,7 @@ shinyServer(function(input, output, session) {
                   column.title.size = 8,
                   row.title.size = 8
                   )
+        
     }, height = 2000) # renderPlot
     
     output$mds <- renderPlotly({
