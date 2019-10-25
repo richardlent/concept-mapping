@@ -19,7 +19,7 @@ shinyUI(fluidPage(
     br(), br(), br(), br(), br(), br(),
     HTML("<center>"),
     h3("Multidimensional Scaling"),
-    h3("Plot of Topics"),
+    h3("Ordination of Topics"),
     HTML("</center>"),
     plotlyOutput("mds", height = 1000, width = "100%"),
     plotOutput("theHeatmap")
