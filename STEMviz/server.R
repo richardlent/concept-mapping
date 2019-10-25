@@ -1,17 +1,6 @@
 # STEMviz, a Shiny app for visualization of STEM topics and concept mapping.
 # Richard Lent, Thursday, June 13, 2019.
 
-library(shiny)
-library(googlesheets)
-library(dplyr)
-library(tidyr)
-library(DT)
-library(readr)
-library(superheat)
-library(htmltools)
-library(plotly)
-library(vegan)
-
 helpTxt <- read_lines("help.txt")
 
 # This performs authentication using a stored Google Sheets OAuth token obtained with gs_auth().

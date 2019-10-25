@@ -1,9 +1,6 @@
 # STEMviz, a Shiny app for visualization of STEM topics and concept mapping.
 # Richard Lent, Thursday, June 13, 2019.
 
-library(shiny)
-library(plotly)
-
 shinyUI(fluidPage(
     
     titlePanel("STEMviz"),
