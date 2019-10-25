@@ -13,6 +13,9 @@ if(!exists("stemData")) {
 }
 
 shinyServer(function(input, output, session) {
+    
+    showModal(modalDialog("Rendering graphics, please wait...", footer = modalButton("Dismiss"),
+                          size = "s", easyClose = TRUE))
 
     output$theHeatmap <- renderPlot({ 
         
