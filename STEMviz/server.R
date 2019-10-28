@@ -76,7 +76,27 @@ shinyServer(function(input, output, session) {
                 y = ~ NMDS2,
                 z = ~ NMDS3,
                 text = ~ `Topic Name`
-            ) %>% layout(font = list(size = 13))
+            ) %>% layout(font = list(size = 13)) %>% 
+            layout(
+                scene = list(
+                    xaxis = list(
+                        showspikes = FALSE
+                        # spikecolor = '#a009b5',
+                        # spikesides = FALSE,
+                        # spikethickness = 6
+                    ),
+                    yaxis = list(
+                        showspikes = FALSE
+                        # spikecolor = '#a009b5',
+                        # spikesides = FALSE,
+                        # spikethickness = 6        
+                    ),
+                    zaxis = list(
+                        showspikes = FALSE
+                        # spikecolor = '#a009b5',
+                        # spikethickness = 6
+                    )
+                )) # layout
         
     }) # renderPlotly
     
