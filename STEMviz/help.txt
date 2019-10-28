@@ -27,7 +27,7 @@ Approximate number of class meetings devoted to coverage (in integers, rounding 
 
 To produce the heatmap, the app creates a data matrix using courses as columns and topics as rows. Values of the matrix cells are supplied by the selected variable. Cells are color-coded according to their values, which are explained in an accompanying legend.<br><br>
 
-NOTE: Cells that are colored gray indicate missing data, caused by the fact that any given course does not contain the complete range of topics.<br><br>
+NOTE: Heatmap cells that are colored gray indicate missing data, caused by the fact that any given course does not contain the complete range of topics.<br><br>
 
 Source code for this app can be viewed <a href="https://github.com/richardlent/concept-mapping" target='blank'>here</a>, in the folder <code>STEMviz</code>.
 
