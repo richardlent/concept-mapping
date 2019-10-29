@@ -76,7 +76,7 @@ shinyServer(function(input, output, session) {
                 y = ~ NMDS2,
                 z = ~ NMDS3,
                 text = ~ `Topic Name`,
-                hovertext = plotThis$Course,
+                hovertext = ~ Course,
                 hoverinfo = 'text'
             ) %>% layout(font = list(size = 13)) %>% 
             layout(
