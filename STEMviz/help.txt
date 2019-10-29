@@ -2,11 +2,17 @@
 
 <div style="font-size:17px;">
 
-This is STEMviz, a <a href='https://shiny.rstudio.com/' target='blank'>Shiny</a> web app written in the <a href='https://www.r-project.org/' target='blank'>R programming language</a>. It was designed to help visualize various aspects of topics taught in STEM courses.<br><br>
+This is STEMviz, a <a href='https://shiny.rstudio.com/' target='blank'>Shiny</a> web app written in the <a href='https://www.r-project.org/' target='blank'>R programming language</a>. It was designed to help visualize various aspects of topics taught in <a href="https://en.wikipedia.org/wiki/Science,_technology,_engineering,_and_mathematics">STEM</a> courses.<br><br>
 
-The app produces <a href="https://en.wikipedia.org/wiki/Heat_map" target='blank'>heatmaps</a> with data contained in a Google Sheet, using the R package <a href="https://rlbarter.github.io/superheat/" target='blank'>superheat</a>. See also <a href="https://arxiv.org/pdf/1512.01524.pdf" target='blank'>Superheat: An R package for creating beautiful and extendable heatmaps for visualizing complex data</a>.<br><br>
+The app produces <a href="https://en.wikipedia.org/wiki/Heat_map" target='blank'>heatmaps</a> with data contained in a Google Sheet, using the R package <a href="https://rlbarter.github.io/superheat/" target='blank'>superheat</a>. (See also <a href="https://arxiv.org/pdf/1512.01524.pdf" target='blank'>Superheat: An R package for creating beautiful and extendable heatmaps for visualizing complex data</a>). Also produced is a 3D <a href="https://en.wikipedia.org/wiki/Multidimensional_scaling">multidimensional scaling</a> (MDS) plot of course topics using the R <a href="https://plot.ly/r/">plotly</a> library. <br><br>
 
 STEMviz first displays the Google Sheet that supplies the data, using the R package <a href="https://rstudio.github.io/DT/" target='blank'>DT</a>, which is an R interface to the JavaScript <a href="https://datatables.net/" target='blank'>DataTables</a> library. You can interact with the data by using the tools provided by the DT package, including searching, pagination, sorting, and other table functions.<br><br>
+
+The app next draws a 3-dimensional MDS plot of topics. Data points are plotted using topic names, and the name of the course is displayed when the mouse cursor is hovered over a topic name. The plot is interactive and can be rotated in 3D by left-clicking and dragging with the mouse cursor. Right-clicking and dragging with the mouse will pan the plot (move it along a single axis), and moving the mouse wheel will zoom the plot in and out. The plot can also be manipulated using the toolbar that appears to the upper right, including saving the plot locally as a PNG image file.<br><br>
+
+Multidimensional scaling uses analysis of a <a href="https://en.wikipedia.org/wiki/Distance_matrix">distance matrix</a> to graphically display relationships among a set of objects (in this case, course topics). A distance matrix expresses dissimilarities between all pairs of objects by computing a distance measure based on several variables. For course topics, the variables used to compute distances were Week, Introduced/Reinforced, and Class time (described below). There are many <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.1/topics/dist">measures of multivariate distance</a>; the measure used here is the maximum distance between any two variables. The greater the distance between two objects in this multidimensional space, the less similar they are.<br><br> 
+
+MDS transforms a distance matrix into a set of coordinates in two or three dimensions. The coordinates are chosen such that the distance between objects in the coordinate space matches the dissimilarities contained in the original distance matrix as closely as possible. This is accomplished through an interative procedure. The resulting 3D plot displayed here shows the relationships among topics according to how they are treated in the various courses.<br><br>
 
 The app then draws a heatmap using the quantitative variable selected by the user. The mapped variable can be changed using the drop-down list. When you choose a new variable the heatmap will be redrawn to reflect the change. The quantitative variables are as follows:<br><br>
 
@@ -29,11 +35,13 @@ To produce the heatmap, the app creates a data matrix using courses as columns a
 
 NOTE: Heatmap cells that are colored gray indicate missing data, caused by the fact that any given course does not contain the complete range of topics.<br><br>
 
+The heatmap can be saved locally as a PNG image file by right-clicking on the image and choosing <code>Save Image As...</code>.<br><br>
+
 Source code for this app can be viewed <a href="https://github.com/richardlent/concept-mapping" target='blank'>here</a>, in the folder <code>STEMviz</code>.
 
 </div><br>
 
-<center><p style="font-size:11px;">STEMviz Version 0.2 by <u><a href='https://richardlent.github.io' target=_blank style='color:#0000EE;'>Richard A. Lent.</a></u></p></center>
+<center><p style="font-size:11px;">STEMviz Version 0.3 by <u><a href='https://richardlent.github.io' target=_blank style='color:#0000EE;'>Richard A. Lent.</a></u></p></center>
 
 
 

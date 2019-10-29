@@ -56,7 +56,6 @@ shinyServer(function(input, output, session) {
         # Make a distance matrix of topics.
         topics.dist <- dist(cbind(
             stemDataSubset$Week, 
-            # stemDataSubset$`Early/Middle/Late`, 
             stemDataSubset$`Introduced/Reinforced`,
             stemDataSubset$`Class time`), 
             method="maximum"
