@@ -68,33 +68,28 @@ shinyServer(function(input, output, session) {
         # Merge scores with data so we can label points with topic names.
         plotThis <- cbind(stemDataSubset, as.data.frame(scores(mds)))
         
-        # Make a 3D Plotly scatterplot of the MDS axes, with topics as labels.
+        # Make a 3D Plotly scatterplot of the MDS axes, with topics as labels
+        # and course name as hover text.
         p <- plot_ly(type = 'scatter3d', mode = 'text') %>% 
             add_trace(
                 data = plotThis,
                 x = ~ NMDS1,
                 y = ~ NMDS2,
                 z = ~ NMDS3,
-                text = ~ `Topic Name`
+                text = ~ `Topic Name`,
+                hovertext = plotThis$Course,
+                hoverinfo = 'text'
             ) %>% layout(font = list(size = 13)) %>% 
             layout(
                 scene = list(
                     xaxis = list(
                         showspikes = FALSE
-                        # spikecolor = '#a009b5',
-                        # spikesides = FALSE,
-                        # spikethickness = 6
                     ),
                     yaxis = list(
                         showspikes = FALSE
-                        # spikecolor = '#a009b5',
-                        # spikesides = FALSE,
-                        # spikethickness = 6        
                     ),
                     zaxis = list(
                         showspikes = FALSE
-                        # spikecolor = '#a009b5',
-                        # spikethickness = 6
                     )
                 )) # layout
         
