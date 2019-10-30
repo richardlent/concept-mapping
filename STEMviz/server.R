@@ -96,7 +96,7 @@ shinyServer(function(input, output, session) {
     
     observeEvent(input$apphelp, {
         helpContent <- HTML(helpTxt)
-        showModal(modalDialog(size = "l",
+        showModal(modalDialog(size = "l", easyClose = TRUE,
             title = HTML("<center><h3>STEMviz Help</h3></center>"), helpContent
         ))
     }) # observeEvent(input$apphelp
