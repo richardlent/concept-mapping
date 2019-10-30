@@ -70,6 +70,13 @@ shinyServer(function(input, output, session) {
         # Make a 3D Plotly scatterplot of the MDS axes, with topics as labels
         # and course name as hover text.
         p <- plot_ly(type = 'scatter3d', mode = 'text') %>% 
+            config(
+                toImageButtonOptions = list(
+                    format = "png",
+                    width = 1700,
+                    height = 1450
+                )
+            ) %>% 
             add_trace(
                 data = plotThis,
                 x = ~ NMDS1,
