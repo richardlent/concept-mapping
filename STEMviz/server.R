@@ -73,7 +73,7 @@ shinyServer(function(input, output, session) {
         mds <- metaMDS(topics.dist, k = 3)
         
         # Merge scores with data so we can label points with topic names.
-        plotThis <- cbind(stemDataSubset, as.data.frame(scores(mds)))
+        plotThis <- cbind(stemDataSubset, as.data.frame(scores(mds, display = "site")))
         
         # Make a 3D Plotly scatterplot of the MDS axes, with topics as labels
         # and course name as hover text.

@@ -5,9 +5,10 @@ account: hcdataviz
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 980291
-bundleId: 2552374
+bundleId: 6113197
 url: https://hcdataviz.shinyapps.io/STEMviz/
-when: 1572466700.11154
+when: 1658262293.30447
+lastSyncTime: 1658262293.30449
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: .httr-oauth|matrixTest.R|stemData.rds|testJaccard.R|testMDS.R
+ignoredFiles: .httr-oauth|googlesheetsToken.rds|matrixTest.R|stemData.rds|testJaccard.R|testMDS.R

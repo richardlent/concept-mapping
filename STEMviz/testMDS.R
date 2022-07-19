@@ -2,17 +2,25 @@
 # Nonmetric Multidimensional Scaling (MDS) with the STEM data.
 # Richard A. Lent, Tuesday, October 22, 2019 at 4:38 PM.
 
-library(googlesheets)
+library(googlesheets4)
 library(vegan)
 library(plotly)
 
-# This performs authentication using a stored Google Sheets OAuth token obtained with gs_auth().
-gs_auth(token = "googlesheetsToken.rds")
+# Set where OAuth tokens are stored.
+options(
+  gargle_oauth_email = TRUE,
+  gargle_oauth_cache = ".secrets"
+)
+
+# Full URL of the Google Sheet is:
+# https://docs.google.com/spreadsheets/d/1M701ZK76GItnSC9BxzptZdOVP2I4XnGwREkt-dFVp6A/edit#gid=1914830905
+# Owner: Richard Lent
+
+sheetID <- "1M701ZK76GItnSC9BxzptZdOVP2I4XnGwREkt-dFVp6A"
 
 if(!exists("stemData")) {
-  table <- "Copy of STEMunit1"     # The name of the Google Sheet.
-  theSheet <- gs_title(table)      # Register the Google Sheet.
-  stemData <- gs_read(theSheet)    # Read the Google Sheet into a tibble.
+  
+  stemData <- read_sheet(sheetID) # A tibble.
 }
 
 # Subset variables.
@@ -32,7 +40,7 @@ topics.dist <- dist(cbind(
 mds <- metaMDS(topics.dist, k = 3)
 
 # Merge scores with data so we can label points with topic names.
-plotThis <- cbind(stemDataSubset, as.data.frame(scores(mds)))
+plotThis <- cbind(stemDataSubset, as.data.frame(scores(mds, display = "site")))
 
 # Make a 3D Plotly scatterplot of the MDS axes, with topics as labels.
 
