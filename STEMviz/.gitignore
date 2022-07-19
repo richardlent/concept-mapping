@@ -1,1 +1,3 @@
 .httr-oauth
+googlesheetsToken.rds
+.secrets

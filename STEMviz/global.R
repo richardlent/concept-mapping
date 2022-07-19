@@ -4,7 +4,7 @@
 
 library(shiny)
 library(plotly)
-library(googlesheets)
+library(googlesheets4)
 library(dplyr)
 library(tidyr)
 library(DT)

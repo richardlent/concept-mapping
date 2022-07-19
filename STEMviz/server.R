@@ -3,13 +3,21 @@
 
 helpTxt <- read_lines("help.txt")
 
-# This performs authentication using a stored Google Sheets OAuth token obtained with gs_auth().
-gs_auth(token = "googlesheetsToken.rds")
+# Set where OAuth tokens are stored.
+options(
+  gargle_oauth_email = TRUE,
+  gargle_oauth_cache = ".secrets"
+)
+
+# Full URL of the Google Sheet is:
+# https://docs.google.com/spreadsheets/d/1M701ZK76GItnSC9BxzptZdOVP2I4XnGwREkt-dFVp6A/edit#gid=1914830905
+# Owner: Richard Lent
+
+sheetID <- "1M701ZK76GItnSC9BxzptZdOVP2I4XnGwREkt-dFVp6A"
 
 if(!exists("stemData")) {
-    table <- "Copy of STEMunit1"     # The name of the Google Sheet.
-    theSheet <- gs_title(table)      # Register the Google Sheet.
-    stemData <- gs_read(theSheet)    # Read the Google Sheet into a tibble.
+    
+    stemData <- read_sheet(sheetID) # A tibble.
 }
 
 shinyServer(function(input, output, session) {
