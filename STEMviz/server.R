@@ -1,6 +1,8 @@
 # STEMviz, a Shiny app for visualization of STEM topics and concept mapping.
 # Richard Lent, Thursday, June 13, 2019.
 
+source("global.R")
+
 helpTxt <- read_lines("help.txt")
 
 # Set where OAuth tokens are stored.
